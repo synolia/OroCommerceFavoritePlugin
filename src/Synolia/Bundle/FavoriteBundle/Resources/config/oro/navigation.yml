@@ -1,0 +1,17 @@
+navigation:
+    menu_config:
+        items:
+            synolia_favorites_list:
+                label: My favorites ♥
+                route: 'synolia_favorite_view'
+                display: true
+        tree:
+            frontend_menu:
+                children:
+                    oro_customer_menu_customer_user_index:
+                        children:
+                            synolia_favorites_list: ~
+            oro_customer_menu:
+                scope_type: menu_frontend_visibility
+                children:
+                    synolia_favorites_list: ~

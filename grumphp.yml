@@ -1,0 +1,54 @@
+grumphp:
+    ascii:
+        failed: ~
+        succeeded: ~
+    tasks:
+        composer:
+            file: "composer.json"
+            no_check_all: true
+
+        git_blacklist:
+            whitelist_patterns:
+                - /^source\/src/
+            keywords:
+                - 'var_dump'
+                - 'console.log'
+                - 'print_r'
+                - 'die('
+            triggered_by: [php, js, twig]
+
+        git_branch_name:
+            whitelist:
+                - '#^(feature|bugfix|hotfix)/(\d+-)?[a-zA-Z0-9-]+$#'
+            additional_modifiers: ''
+
+        jsonlint:
+            detect_key_conflicts: true
+
+        phpcsfixer2:
+            config: 'dev/resources/.php_cs'
+            verbose: true
+            diff: true
+            triggered_by: ['php']
+
+        phplint:
+            exclude: ['vendor']
+            triggered_by: ['php']
+
+        phpcs:
+            standard: "PSR2"
+            whitelist_patterns:
+                - /^src\/Synolia\/(.*)/
+            triggered_by: [php]
+
+        phpmd:
+            whitelist_patterns:
+                - /^src\/Synolia\/(.*)/
+            ruleset:
+                - "./dev/resources/phpmd.xml"
+            exclude:
+                - "./src/Synolia/Bundle/FavoriteBundle/Tests/*"
+
+        twigcs:
+            path: './src/Synolia'
+            severity: ignore

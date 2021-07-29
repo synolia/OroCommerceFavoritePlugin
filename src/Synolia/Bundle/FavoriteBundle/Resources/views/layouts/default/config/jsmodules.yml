@@ -1,0 +1,3 @@
+dynamic-imports:
+    synolia-favorite-button-ajax:
+        - synoliafavorite/js/app/views/favorite-button-ajax
