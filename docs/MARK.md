@@ -2,7 +2,7 @@
 
 ## Action of marking a product as a favorite
 
-When a customer is logged in and clicks on the heart icon of a product, it will be marked as a favorite by changing its color.
+When a customer is logged in and clicks on the heart icon of a product, the heart will turn from a white filled icon to a red filled one, indicating the product is now saved as favorite.
 If the red button is clicked again, this product will be removed from the favorites list.
 
 In addition, an alert message will appear indicating that the product was marked as a favorite or when it is removed.
