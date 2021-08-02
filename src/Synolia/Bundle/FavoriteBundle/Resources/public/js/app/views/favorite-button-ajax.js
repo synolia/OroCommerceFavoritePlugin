@@ -35,7 +35,7 @@ const AjaxButtonView = BaseView.extend({
                 }
             },
             error: function() {
-                messenger.notificationFlashMessage('error', 'Oops');
+                messenger.notificationFlashMessage('error', 'Something went wrong, please try again later.');
             }
         });
     },

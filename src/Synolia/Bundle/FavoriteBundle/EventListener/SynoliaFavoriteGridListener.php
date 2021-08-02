@@ -11,7 +11,7 @@ use Oro\Bundle\SearchBundle\Datagrid\Datasource\SearchDatasource;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
-class FavoriteCustomerDatagridListener
+class SynoliaFavoriteGridListener
 {
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;

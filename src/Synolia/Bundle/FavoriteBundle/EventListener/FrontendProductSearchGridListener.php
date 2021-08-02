@@ -12,7 +12,7 @@ use Oro\Bundle\SearchBundle\Datagrid\Event\SearchResultAfter;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
-class FavoriteDatagridListener
+class FrontendProductSearchGridListener
 {
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;
