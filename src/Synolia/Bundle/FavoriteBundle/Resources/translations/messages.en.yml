@@ -1,0 +1,9 @@
+synolia_favorite_bundle:
+    favorite_system_setting:
+        name: Favorite Check
+        title: Enable Favorite Check
+        label: Enable Favorite Check for Products
+        no: No
+        yes: Yes
+    controller:
+        logged_in: You must be logged in to use this feature

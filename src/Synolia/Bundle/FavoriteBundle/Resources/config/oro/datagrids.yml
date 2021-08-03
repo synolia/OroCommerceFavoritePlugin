@@ -1,0 +1,3 @@
+datagrids:
+    synolia-favorite-grid:
+        extends: frontend-product-search-grid

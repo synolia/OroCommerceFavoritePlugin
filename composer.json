@@ -1,0 +1,33 @@
+{
+    "name": "synolia/orocommerce-favorite-plugin",
+    "keywords": [
+        "orocommerce",
+        "orocommerce-plugin",
+        "favorite"
+    ],
+    "description": "OroCommerce Favorite Plugin",
+    "homepage": "https://github.com/synolia/orocommerce-favorite-plugin",
+    "license": "EUPL-1.2",
+    "authors": [
+        {
+            "name": "Synolia",
+            "homepage": "http://www.synolia.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Synolia\\Bundle\\FavoriteBundle\\": "src/Synolia/Bundle/FavoriteBundle"},
+        "exclude-from-classmap": ["/Tests/"]
+    },
+    "require": {
+        "php": "~7.4.14",
+        "oro/commerce": "4.2.*"
+    },
+    "repositories": {
+        "oro": {
+            "type": "composer",
+            "url": "https://packagist.orocrm.com"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

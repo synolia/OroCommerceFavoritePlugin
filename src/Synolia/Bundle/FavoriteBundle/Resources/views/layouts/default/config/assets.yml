@@ -1,0 +1,3 @@
+styles:
+    inputs:
+        - 'bundles/synoliafavorite/default/scss/components/favorite-button-ajax.scss'

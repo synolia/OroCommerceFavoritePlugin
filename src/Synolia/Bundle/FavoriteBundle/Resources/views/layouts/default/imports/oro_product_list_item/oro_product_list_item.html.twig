@@ -1,0 +1,18 @@
+{% block __oro_product_list_item__favorite_widget %}
+
+    {% set attr = layout_attr_defaults(attr, {
+        'data-page-component-view': 'synoliafavorite/js/app/views/favorite-button-ajax',
+        'data-page-component-options': {'product': product}|json_encode
+    }) %}
+
+    <div {{ block('block_attributes') }}>
+
+        {{ block_widget(block) }}
+
+        <a class="btn favorite-button-ajax">
+            {% if (is_favorite_product(product)) %} ♥ {% else %} ♡ {% endif %}
+        </a>
+
+    </div>
+
+{% endblock %}

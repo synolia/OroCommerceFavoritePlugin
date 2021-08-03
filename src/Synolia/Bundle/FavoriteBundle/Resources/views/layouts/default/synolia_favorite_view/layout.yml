@@ -1,0 +1,8 @@
+layout:
+    imports:
+        - id: oro_customer_page
+        -
+            id: synolia_favorite_grid
+            root: page_content
+    actions: []
+    conditions: 'context["isFavoriteEnabled"] == true'

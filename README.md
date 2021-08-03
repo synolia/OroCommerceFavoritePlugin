@@ -4,20 +4,20 @@
 [Total Downloads] TODO
 
 # Oro Favorite Bundle
-This plugin allows you to use a Favorite's Product Plugin in OroCommerce
+This plugin allows you to save products as favorite in OroCommerce
 
 ## Features
 
 * Enable or Disable the Plugin in the BO - [Documentation](docs/ENABLED.md)
-* Mark in red a heart when a product was marked as a favorite - [Documentation](docs/MARK.md)
-* Display to the customer a list of their favorite products with the possibility to add them to a shopping list - [Documentation](docs/LIST.md)
+* Save product as Favorite through a Heart icon - [Documentation](docs/MARK.md)
+* Display within the Customer account a list of their favorite products with the possibility to add them to a shopping list - [Documentation](docs/LIST.md)
 
 ## Requirements
 
 | | Version |
 | :--- | :--- |
-| PHP  | 7.3.13, 7.4.2 |
-| OroCommerce | 4.1 |
+| PHP  | ~7.4.14 |
+| OroCommerce | 4.2 |
 
 ## Installation
 

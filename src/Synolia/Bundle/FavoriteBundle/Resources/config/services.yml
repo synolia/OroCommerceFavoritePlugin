@@ -1,0 +1,35 @@
+services:
+    Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@oro_security.token_accessor'
+        tags:
+            - { name: layout.data_provider, alias: synolia_favorite }
+
+    Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler:
+        public: true
+        arguments:
+            - '@oro_security.token_accessor'
+            - '@doctrine.orm.entity_manager'
+
+    Synolia\Bundle\FavoriteBundle\Twig\FavoriteExtension:
+        arguments:
+            $favoriteDataProvider: '@Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider'
+            $entityManager: '@doctrine.orm.entity_manager'
+        tags:
+            - { name: twig.extension }
+
+    Synolia\Bundle\FavoriteBundle\Layout\Extension\FavoriteAwareContextConfigurator:
+        arguments:
+            - '@oro_config.manager'
+        tags:
+            - { name: layout.context_configurator }
+
+    Synolia\Bundle\FavoriteBundle\EventListener\NavigationListener:
+        class: Synolia\Bundle\FavoriteBundle\EventListener\NavigationListener
+        arguments:
+            - '@security.authorization_checker'
+            - '@oro_security.token_accessor'
+            - '@oro_config.manager'
+        tags:
+            - { name: kernel.event_listener, event: oro_menu.configure.oro_customer_menu, method: onNavigationConfigure }

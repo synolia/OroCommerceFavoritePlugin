@@ -1,0 +1,13 @@
+layout:
+    actions:
+        - '@setBlockTheme':
+              themes: 'SynoliaFavoriteBundle:layouts:default/oro_product_frontend_product_view/layout.html.twig'
+        - '@add':
+              id: favorite_media_container
+              blockType: block
+              options:
+                  vars:
+                      product: '=data["product"]'
+                      favorite: '=data["synolia_favorite"].isProductFavorite(data["product"])'
+              parentId: product_view_media_container
+    conditions: 'context["isFavoriteEnabled"] == true'
