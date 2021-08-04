@@ -36,7 +36,10 @@ class FavoriteExtension extends AbstractExtension
         ];
     }
 
-
+    /**
+     * @param Product|array $product
+     * @return bool
+     */
     public function isFavoriteProduct($product): bool
     {
         if (!$product instanceof Product) {

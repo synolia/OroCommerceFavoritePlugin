@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler;
 
 class FavoriteAjaxController extends AbstractController
@@ -19,7 +20,11 @@ class FavoriteAjaxController extends AbstractController
      */
     public function create(Product $product): JsonResponse
     {
+        /** @var TranslatorInterface */
+        $translator = $this->get('translator');
+        /** @var FavoriteAjaxHandler $handler */
         $handler = $this->get(FavoriteAjaxHandler::class);
+
         $result = $handler->create($product);
         if ($result['success']) {
             return new JsonResponse($result);
@@ -27,7 +32,7 @@ class FavoriteAjaxController extends AbstractController
 
         return new JsonResponse([
             'status' => 'warning',
-            'message' => $this->get('translator')->trans(
+            'message' => $translator->trans(
                 'synolia_favorite_bundle.controller.logged_in'
             )
         ]);

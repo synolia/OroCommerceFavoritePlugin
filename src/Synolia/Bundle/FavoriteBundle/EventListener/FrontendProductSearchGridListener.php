@@ -4,31 +4,32 @@ declare(strict_types=1);
 
 namespace Synolia\Bundle\FavoriteBundle\EventListener;
 
-use Doctrine\ORM\EntityManager;
+use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
 use Oro\Bundle\DataGridBundle\Datasource\ResultRecord;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
 use Oro\Bundle\DataGridBundle\Extension\Formatter\Property\PropertyInterface;
+use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\SearchBundle\Datagrid\Event\SearchResultAfter;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
-use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
+use Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository;
 
 class FrontendProductSearchGridListener
 {
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;
 
-    /** @var EntityManager */
-    protected $entityManager;
+    /** @var FavoriteRepository */
+    private $favoriteRepository;
 
     public function __construct(
         TokenAccessorInterface $tokenAccessor,
-        EntityManager $entityManager
+        FavoriteRepository $favoriteRepository
     ) {
         $this->tokenAccessor = $tokenAccessor;
-        $this->entityManager = $entityManager;
+        $this->favoriteRepository = $favoriteRepository;
     }
 
-    public function onResultAfter(SearchResultAfter $event)
+    public function onResultAfter(SearchResultAfter $event): void
     {
         /** @var ResultRecord[] $records */
         $records = $event->getRecords();
@@ -37,9 +38,16 @@ class FrontendProductSearchGridListener
         }
 
         $user = $this->tokenAccessor->getUser();
-        $organization = $this->tokenAccessor->getOrganization();
+        if (!$user instanceof CustomerUser) {
+            return;
+        }
 
-        $favorites = $this->entityManager->getRepository(Favorite::class)
+        $organization = $this->tokenAccessor->getOrganization();
+        if (!$organization instanceof Organization) {
+            return;
+        }
+
+        $favorites = $this->favoriteRepository
             ->getFavoritesProductsInSingleArray($user, $organization);
 
         foreach ($records as $record) {
@@ -54,7 +62,7 @@ class FrontendProductSearchGridListener
     }
 
 
-    public function onBuildBefore(BuildBefore $event)
+    public function onBuildBefore(BuildBefore $event): void
     {
         $config = $event->getConfig();
 

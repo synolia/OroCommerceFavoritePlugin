@@ -43,7 +43,7 @@ class NavigationListener
         }
     }
 
-    public function isFavoriteEnabled()
+    public function isFavoriteEnabled(): bool
     {
         return $this->configManager->get('synolia_favorite.favorite_product_enable');
     }

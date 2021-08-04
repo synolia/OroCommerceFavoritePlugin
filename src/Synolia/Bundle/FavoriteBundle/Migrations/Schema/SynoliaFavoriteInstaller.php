@@ -13,7 +13,7 @@ class SynoliaFavoriteInstaller implements Installation
     /**
      * {@inheritdoc}
      */
-    public function getMigrationVersion()
+    public function getMigrationVersion(): string
     {
         return 'v1_0';
     }
@@ -35,7 +35,7 @@ class SynoliaFavoriteInstaller implements Installation
      *
      * @param Schema $schema
      */
-    protected function createSyFavoriteTable(Schema $schema)
+    protected function createSyFavoriteTable(Schema $schema): void
     {
         $table = $schema->createTable('sy_favorite');
         $table->addColumn('id', 'integer', ['autoincrement' => true]);
@@ -57,7 +57,7 @@ class SynoliaFavoriteInstaller implements Installation
      *
      * @param Schema $schema
      */
-    protected function addSyFavoriteForeignKeys(Schema $schema)
+    protected function addSyFavoriteForeignKeys(Schema $schema): void
     {
         $table = $schema->getTable('sy_favorite');
         $table->addForeignKeyConstraint(

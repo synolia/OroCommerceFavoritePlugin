@@ -7,13 +7,15 @@ namespace Synolia\Bundle\FavoriteBundle\Entity\Repository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Parameter;
+use Oro\Bundle\OrganizationBundle\Entity\Organization;
+use Oro\Bundle\UserBundle\Entity\AbstractUser;
 
 class FavoriteRepository extends EntityRepository
 {
-    public function getFavoritesProductsCollection($user, $org): array
+    public function getFavoritesProductsCollection(AbstractUser $user, Organization $org): array
     {
-        $qb = $this->createQueryBuilder('f');
-        $qb
+        $queryBuilder = $this->createQueryBuilder('f');
+        $queryBuilder
             ->resetDQLPart('select')
             ->select('IDENTITY(f.product) as product_id')
             ->andWhere('f.customerUser = :user')
@@ -22,10 +24,10 @@ class FavoriteRepository extends EntityRepository
                 new Parameter('user', $user),
                 new Parameter('org', $org)
             ]));
-        return $qb->getQuery()->getArrayResult();
+        return $queryBuilder->getQuery()->getArrayResult();
     }
 
-    public function getFavoritesProductsInSingleArray($user, $org): array
+    public function getFavoritesProductsInSingleArray(AbstractUser $user, Organization $org): array
     {
         $newArray = [];
 

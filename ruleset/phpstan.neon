@@ -1,0 +1,7 @@
+parameters:
+    level: 4
+    reportUnmatchedIgnoredErrors: false
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    bootstrapFiles:
+        - ../vendor/autoload.php

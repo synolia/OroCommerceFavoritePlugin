@@ -5,29 +5,31 @@ declare(strict_types=1);
 namespace Synolia\Bundle\FavoriteBundle\EventListener;
 
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\ORM\EntityManager;
+use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
+use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\SearchBundle\Datagrid\Datasource\SearchDatasource;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
+use Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository;
 
 class SynoliaFavoriteGridListener
 {
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;
 
-    /** @var EntityManager */
-    protected $entityManager;
+    /** @var FavoriteRepository */
+    protected $favoriteRepository;
 
     public function __construct(
         TokenAccessorInterface $tokenAccessor,
-        EntityManager $entityManager
+        FavoriteRepository $favoriteRepository
     ) {
         $this->tokenAccessor = $tokenAccessor;
-        $this->entityManager = $entityManager;
+        $this->favoriteRepository = $favoriteRepository;
     }
 
-    public function onBuildAfter(BuildAfter $event)
+    public function onBuildAfter(BuildAfter $event): void
     {
         $datasource = $event->getDatagrid()->getDatasource();
 
@@ -36,9 +38,16 @@ class SynoliaFavoriteGridListener
         }
 
         $user = $this->tokenAccessor->getUser();
-        $organization = $this->tokenAccessor->getOrganization();
+        if (!$user instanceof CustomerUser) {
+            return;
+        }
 
-        $products = $this->entityManager->getRepository(Favorite::class)
+        $organization = $this->tokenAccessor->getOrganization();
+        if (!$organization instanceof Organization) {
+            return;
+        }
+
+        $products = $this->favoriteRepository
             ->getFavoritesProductsCollection($user, $organization);
 
         $ids = [];

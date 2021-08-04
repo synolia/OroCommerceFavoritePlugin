@@ -60,18 +60,28 @@ class Favorite extends ExtendFavorite implements OrganizationAwareInterface, Dat
 
 
     /**
+     * @return integer
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
      * @return Product
      */
-    public function getProduct()
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
     /**
      * @param Product $product
+     * @return Favorite
      */
-    public function setProduct(Product $product)
+    public function setProduct(Product $product): self
     {
         $this->product = $product;
+        return $this;
     }
 }

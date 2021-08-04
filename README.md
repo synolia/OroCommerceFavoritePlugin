@@ -1,5 +1,4 @@
 [![License](https://img.shields.io/packagist/l/synolia/sylius-akeneo-plugin.svg)](LICENCE)
-[Tests] TODO
 [Version] TODO
 [Total Downloads] TODO
 
@@ -16,7 +15,7 @@ This plugin allows you to save products as favorite in OroCommerce
 
 | | Version |
 | :--- | :--- |
-| PHP  | ~7.4.14 |
+| PHP  | 7.4 |
 | OroCommerce | 4.2 |
 
 ## Installation
