@@ -25,3 +25,19 @@ jobs:
       - name: Composer - Update dependencies
         run: composer update --no-progress
         id: end-of-setup
+        
+      - name: PHPStan - Run
+        run: if [ -f ruleset/phpstan.neon ]; then vendor/bin/phpstan analyse -c ruleset/phpstan.neon src/ ; else echo PHPStan ruleset file does not exist, skipping step ; fi
+        if: always() && steps.end-of-setup.outcome == 'success'
+
+      - name: PHPSpec - Run
+        run: if [ -f phpspec.yml.dist ]; then vendor/bin/phpspec run ; else echo PHPSpec config file does not exist, skipping step ; fi
+        if: always() && steps.end-of-setup.outcome == 'success'
+
+      - name: PHPMD - Run
+        run: if [ -f ruleset/.php_md.xml ]; then vendor/bin/phpmd src ansi ruleset/.php_md.xml ; else echo PHPMD config file does not exist, skipping step ; fi
+        if: always() && steps.end-of-setup.outcome == 'success'
+
+      - name: GrumPHP - Run
+        run: (test -f grumphp.yml && vendor/bin/grumphp run) || echo Grumphp ruleset file does not exist, skipping step
+        if: always() && steps.end-of-setup.outcome == 'success'
