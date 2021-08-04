@@ -26,8 +26,6 @@ grumphp:
         yamllint:
             parse_custom_tags: true
         securitychecker_enlightn: ~
-        phpcs:
-            standard: "PSR2"
-            whitelist_patterns:
-                - /^src\/Synolia/
-            triggered_by: [ php ]
+        phpcsfixer2:
+            allow_risky: true
+            config: 'ruleset/.php_cs'
