@@ -1,4 +1,5 @@
 [![License](https://img.shields.io/packagist/l/synolia/sylius-akeneo-plugin.svg)](LICENCE)
+![Tests](https://github.com/synolia/OroCommerceFavoritePlugin/workflows/CI/badge.svg?branch=master)
 [Version] TODO
 [Total Downloads] TODO
 
