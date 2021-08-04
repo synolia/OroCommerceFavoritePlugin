@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Synolia\Bundle\FavoriteBundle\EventListener;
 
 use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\EntityManager;
 use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
 use Oro\Bundle\DataGridBundle\Event\BuildAfter;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
@@ -18,15 +19,15 @@ class SynoliaFavoriteGridListener
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;
 
-    /** @var FavoriteRepository */
-    protected $favoriteRepository;
+    /** @var EntityManager */
+    protected $entityManager;
 
     public function __construct(
         TokenAccessorInterface $tokenAccessor,
-        FavoriteRepository $favoriteRepository
+        EntityManager $entityManager
     ) {
         $this->tokenAccessor = $tokenAccessor;
-        $this->favoriteRepository = $favoriteRepository;
+        $this->entityManager = $entityManager;
     }
 
     public function onBuildAfter(BuildAfter $event): void
@@ -47,8 +48,10 @@ class SynoliaFavoriteGridListener
             return;
         }
 
-        $products = $this->favoriteRepository
-            ->getFavoritesProductsCollection($user, $organization);
+        /** @var FavoriteRepository $favoriteRepository */
+        $favoriteRepository = $this->entityManager->getRepository(Favorite::class);
+
+        $products =  $favoriteRepository->getFavoritesProductsCollection($user, $organization);
 
         $ids = [];
 

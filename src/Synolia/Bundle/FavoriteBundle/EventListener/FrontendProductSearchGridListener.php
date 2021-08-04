@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Synolia\Bundle\FavoriteBundle\EventListener;
 
+use Doctrine\ORM\EntityManager;
 use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
 use Oro\Bundle\DataGridBundle\Datasource\ResultRecord;
 use Oro\Bundle\DataGridBundle\Event\BuildBefore;
@@ -11,6 +12,7 @@ use Oro\Bundle\DataGridBundle\Extension\Formatter\Property\PropertyInterface;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\SearchBundle\Datagrid\Event\SearchResultAfter;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
+use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 use Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository;
 
 class FrontendProductSearchGridListener
@@ -18,15 +20,15 @@ class FrontendProductSearchGridListener
     /** @var TokenAccessorInterface */
     protected $tokenAccessor;
 
-    /** @var FavoriteRepository */
-    private $favoriteRepository;
+    /** @var EntityManager */
+    private $entityManager;
 
     public function __construct(
         TokenAccessorInterface $tokenAccessor,
-        FavoriteRepository $favoriteRepository
+        EntityManager $entityManager
     ) {
         $this->tokenAccessor = $tokenAccessor;
-        $this->favoriteRepository = $favoriteRepository;
+        $this->entityManager = $entityManager;
     }
 
     public function onResultAfter(SearchResultAfter $event): void
@@ -47,8 +49,9 @@ class FrontendProductSearchGridListener
             return;
         }
 
-        $favorites = $this->favoriteRepository
-            ->getFavoritesProductsInSingleArray($user, $organization);
+        /** @var FavoriteRepository $favoriteRepository */
+        $favoriteRepository = $this->entityManager->getRepository(Favorite::class);
+        $favorites =  $favoriteRepository->getFavoritesProductsInSingleArray($user, $organization);
 
         foreach ($records as $record) {
             $productId = $record->getValue('id');
