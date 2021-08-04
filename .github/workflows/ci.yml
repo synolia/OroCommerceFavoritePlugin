@@ -20,6 +20,8 @@ jobs:
         php: [7.4]
         
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Composer - Update dependencies
         run: composer update --no-progress
         id: end-of-setup
