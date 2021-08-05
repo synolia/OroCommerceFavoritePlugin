@@ -1,7 +1,7 @@
 [![License](https://img.shields.io/packagist/l/synolia/sylius-akeneo-plugin.svg)](LICENCE)
 ![Tests](https://github.com/synolia/OroCommerceFavoritePlugin/workflows/CI/badge.svg?branch=master)
-[Version] TODO
-[Total Downloads] TODO
+[![Version](http://poser.pugx.org/synolia/orocommerce-favorite-plugin/v)](https://packagist.org/packages/synolia/orocommerce-favorite-plugin)
+[![Total Downloads](http://poser.pugx.org/synolia/orocommerce-favorite-plugin/downloads)](https://packagist.org/packages/synolia/orocommerce-favorite-plugin)
 
 # Oro Favorite Bundle
 This plugin allows you to save products as favorite in OroCommerce
@@ -16,7 +16,7 @@ This plugin allows you to save products as favorite in OroCommerce
 
 | | Version |
 | :--- | :--- |
-| PHP  | 7.4 |
+| PHP  | 7.4, 8.0 |
 | OroCommerce | 4.2 |
 
 ## Installation

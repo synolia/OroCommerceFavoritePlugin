@@ -13,19 +13,19 @@ jobs:
   analysis:
     name: PHP ${{ matrix.php }}
     runs-on: ubuntu-18.04
-    
+
     strategy:
       fail-fast: false
       matrix:
-        php: [7.4]
-        
+        php: [7.4, 8.0]
+
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Composer - Update dependencies
         run: composer update --no-progress
         id: end-of-setup
-        
+
       - name: PHPStan - Run
         run: if [ -f ruleset/phpstan.neon ]; then vendor/bin/phpstan analyse -c ruleset/phpstan.neon src/ ; else echo PHPStan ruleset file does not exist, skipping step ; fi
         if: always() && steps.end-of-setup.outcome == 'success'
