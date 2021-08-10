@@ -23,7 +23,7 @@ This plugin allows you to save products as favorite in OroCommerce
 
 1. Install the Plugin using Composer:
 ```shell
-composer require synolia/orocommerce-stock-alert-plugin
+composer require synolia/orocommerce-favorite-plugin
 ```
 2. Run the Migrations
 ```shell
