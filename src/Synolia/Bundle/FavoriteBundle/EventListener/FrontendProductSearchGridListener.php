@@ -35,17 +35,10 @@ class FrontendProductSearchGridListener
     {
         /** @var ResultRecord[] $records */
         $records = $event->getRecords();
-        if (\count($records) === 0) {
-            return;
-        }
-
         $user = $this->tokenAccessor->getUser();
-        if (!$user instanceof CustomerUser) {
-            return;
-        }
-
         $organization = $this->tokenAccessor->getOrganization();
-        if (!$organization instanceof Organization) {
+
+        if (!$user instanceof CustomerUser || !$organization instanceof Organization || 0 === \count($records)) {
             return;
         }
 
@@ -55,12 +48,9 @@ class FrontendProductSearchGridListener
 
         foreach ($records as $record) {
             $productId = $record->getValue('id');
-
-            $record->addData(['favorite' => 0]);
-
-            if (in_array($productId, $favorites)) {
-                $record->addData(['favorite' => 1]);
-            }
+            $record->addData([
+                'favorite' => in_array($productId, $favorites) ?? false
+            ]);
         }
     }
 
@@ -74,7 +64,7 @@ class FrontendProductSearchGridListener
             [
                 'favorite' => [
                     'type' => 'field',
-                    'frontend_type' => PropertyInterface::TYPE_DECIMAL
+                    'frontend_type' => PropertyInterface::TYPE_BOOLEAN
                 ]
             ]
         );

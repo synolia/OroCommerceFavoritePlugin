@@ -6,6 +6,7 @@ namespace Synolia\Bundle\FavoriteBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
 use Oro\Bundle\ProductBundle\Entity\Product;
+use Oro\Bundle\ProductBundle\Model\ProductView;
 use Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -37,13 +38,17 @@ class FavoriteExtension extends AbstractExtension
     }
 
     /**
-     * @param Product|array $product
+     * @param Product|array|ProductView $product
      * @return bool
      */
-    public function isFavoriteProduct($product): bool
+    public function isFavoriteProduct(Product|array|ProductView $product): bool
     {
-        if (!$product instanceof Product) {
-            return (bool)$product['favorite'];
+        if ($product instanceof ProductView) {
+            return $product->get('favorite');
+        }
+
+        if (\is_array($product)) {
+            return $product['favorite'] ?? false;
         }
 
         return $this->favoriteDataProvider->isProductFavorite($product);

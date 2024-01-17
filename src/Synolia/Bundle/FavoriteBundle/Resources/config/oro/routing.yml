@@ -1,7 +1,7 @@
-synolia_ajax_button_favorite:
+synolia_frontend_favorite_ajax:
     resource: "@SynoliaFavoriteBundle/Controller/Frontend/FavoriteAjaxController.php"
     type: annotation
-    prefix: /favorite
+    prefix: '/favorite'
     options:
         frontend: true
 

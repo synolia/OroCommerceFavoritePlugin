@@ -1,7 +1,14 @@
-.btn.favorite-button-ajax {
-  color: #f44336;
-  padding: 0;
-  border: none;
-  background: #fff none;
-  font-size: 36px;
+.favorite-button-ajax {
+  padding: $favorite-button-padding;
+  &__icon {
+    color: $favorite-button-color;
+    font-size: $favorite-button-font-size;
+    cursor: pointer;
+    &:focus, &:active {
+      color: $favorite-button-color-focus;
+    }
+    &:hover {
+      color: $favorite-button-color-hover;
+    }
+  }
 }

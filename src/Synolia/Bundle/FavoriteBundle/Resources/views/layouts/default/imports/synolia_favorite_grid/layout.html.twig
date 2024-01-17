@@ -1,0 +1,15 @@
+{% block _remove_favorite_widget %}
+    {% set attr = layout_attr_defaults(attr, {
+        'data-page-component-view': 'synoliafavorite/js/app/views/favorite-button-ajax',
+        'data-page-component-options': {'product': product}|json_encode,
+        '~class': ' favorite-datagrid__product_remove'
+    }) %}
+
+    <div {{ block('block_attributes') }}>
+        {{ block_widget(block) }}
+        <button class="btn btn--link favorite-button-ajax">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            {{ 'synolia_favorite_bundle.frontend.grid.remove_button_label'|trans }}
+        </button>
+    </div>
+{% endblock %}

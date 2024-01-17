@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Synolia\Bundle\FavoriteBundle\Controller\Frontend;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Oro\Bundle\ProductBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,25 +15,33 @@ use Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler;
 
 class FavoriteAjaxController extends AbstractController
 {
+    public function __construct(
+        protected FavoriteAjaxHandler $favoriteAjaxHandler,
+        protected TranslatorInterface $translator
+    ) {
+    }
+
     /**
-     * @Route("/create/{id}", requirements={"id"="\d+"})
-     * @ParamConverter("product", class="OroProductBundle:Product", options={"id" = "id"})
+     * @Route(
+     *     "/create/{id}",
+     *     requirements={"id"="\d+"},
+     *     name="synolia_favorite_button_ajax_update"
+     *     )
+     *
+     * @param Product $product
+     *
+     * @return JsonResponse
      */
     public function create(Product $product): JsonResponse
     {
-        /** @var TranslatorInterface */
-        $translator = $this->get('translator');
-        /** @var FavoriteAjaxHandler $handler */
-        $handler = $this->get(FavoriteAjaxHandler::class);
-
-        $result = $handler->create($product);
+        $result = $this->favoriteAjaxHandler->create($product);
         if ($result['success']) {
             return new JsonResponse($result);
         }
 
         return new JsonResponse([
             'status' => 'warning',
-            'message' => $translator->trans(
+            'message' => $this->translator->trans(
                 'synolia_favorite_bundle.controller.logged_in'
             )
         ]);

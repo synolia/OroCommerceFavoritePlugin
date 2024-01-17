@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        public: true
+
+    Synolia\Bundle\FavoriteBundle\Controller\Frontend\FavoriteAjaxController:
+        calls:
+            - [ 'setContainer', [ '@Psr\Container\ContainerInterface' ] ]
+        tags:
+            - { name: container.service_subscriber }
+            - { name: controller.service_arguments }
+        arguments:
+            - '@Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler'
+            - '@translator'
+
+    Synolia\Bundle\FavoriteBundle\Controller\Frontend\FavoriteController:
+        calls:
+            - [ 'setContainer', [ '@Psr\Container\ContainerInterface' ] ]
+        tags:
+            - { name: container.service_subscriber }

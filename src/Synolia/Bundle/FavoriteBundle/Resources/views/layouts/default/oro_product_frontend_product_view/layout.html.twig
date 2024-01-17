@@ -8,10 +8,10 @@
     <div {{ block('block_attributes') }}>
 
         {{ block_widget(block) }}
-
-        <a class="btn favorite-button-ajax">
-            {% if (favorite) %} ♥ {% else %} ♡ {% endif %}
-        </a>
+        {% set heartSvg = is_favorite_product(product) ? 'heart' : 'heart-o' %}
+        <button class="btn btn--link favorite-button-ajax favorite-button-ajax__icon">
+            <i class="fa fa-{{ heartSvg }} favorite-button__icon" aria-hidden="true"></i>
+        </button>
 
     </div>
 
