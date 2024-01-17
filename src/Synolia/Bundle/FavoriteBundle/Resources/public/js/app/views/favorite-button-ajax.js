@@ -3,6 +3,7 @@ import $ from 'jquery';
 import messenger from 'oroui/js/messenger';
 import mediator from 'oroui/js/mediator';
 import routing from 'routing';
+import __ from 'orotranslation/js/translator';
 
 const AjaxButtonView = BaseView.extend({
     product: null,
@@ -27,12 +28,13 @@ const AjaxButtonView = BaseView.extend({
                     const status = self.getStatus(response.status);
                     messenger.notificationFlashMessage(status, response.message);
                     self.updateIcon($(e.currentTarget), response.status);
+                    messenger.notificationFlashMessage('error',  __('synolia_favorite_bundle.notification.error'));
 
                     mediator.trigger('datagrid:doRefresh:synolia-favorite-grid');
                 }
             },
             error: function() {
-                messenger.notificationFlashMessage('error', 'Something went wrong, please try again later.');
+                messenger.notificationFlashMessage('error',  _.__('synolia_favorite_bundle.notification.error'));
             }
         });
     },

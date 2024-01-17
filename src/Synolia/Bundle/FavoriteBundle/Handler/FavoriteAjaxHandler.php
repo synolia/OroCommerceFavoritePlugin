@@ -26,10 +26,14 @@ class FavoriteAjaxHandler
         $synoliaFavoriteRepository = $this->entityManager->getRepository(Favorite::class);
 
         $user = $this->tokenAccessor->getUser();
-        $organization = $user->getOrganization();
+        $organization = $user instanceof CustomerUser ? $user->getOrganization() : null;
         if (!$user instanceof CustomerUser || !$organization instanceof Organization) {
             return [
                 'success' => false,
+                'status' => 'warning',
+                'message' => $this->translator->trans(
+                    'synolia_favorite_bundle.controller.logged_in'
+                )
             ];
         }
 
