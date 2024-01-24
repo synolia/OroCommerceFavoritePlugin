@@ -1,7 +1,7 @@
 layout:
     actions:
         - '@setBlockTheme':
-              themes: 'SynoliaFavoriteBundle:layouts:default/imports/oro_product_list_item/oro_product_list_item.html.twig'
+              themes: '@SynoliaFavorite/layouts/default/imports/oro_product_list_item/oro_product_list_item.html.twig'
         - '@add':
               id: __favorite
               blockType: block

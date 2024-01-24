@@ -33,38 +33,23 @@ class SynoliaFavoriteGridListener
     public function onBuildAfter(BuildAfter $event): void
     {
         $datasource = $event->getDatagrid()->getDatasource();
-
-        if (!$datasource instanceof SearchDatasource) {
-            return;
-        }
-
         $user = $this->tokenAccessor->getUser();
-        if (!$user instanceof CustomerUser) {
-            return;
-        }
-
         $organization = $this->tokenAccessor->getOrganization();
-        if (!$organization instanceof Organization) {
+
+        if (!$user instanceof CustomerUser || !$organization instanceof Organization || !$datasource instanceof SearchDatasource) {
             return;
         }
 
         /** @var FavoriteRepository $favoriteRepository */
         $favoriteRepository = $this->entityManager->getRepository(Favorite::class);
+        $products =  $favoriteRepository->getFavoritesProductsInSingleArray($user, $organization);
 
-        $products =  $favoriteRepository->getFavoritesProductsCollection($user, $organization);
-
-        $ids = [];
-
-        foreach ($products as $product) {
-            $ids[] = $product['product_id'];
-        }
-
-        if (empty($ids)) {
-            $ids = [0];
+        if (empty($products)) {
+            $products = [0];
         }
 
         $datasource
             ->getSearchQuery()
-            ->addWhere(Criteria::expr()->in('integer.product_id', $ids));
+            ->getCriteria()->where(Criteria::expr()->in('integer.system_entity_id', $products));
     }
 }

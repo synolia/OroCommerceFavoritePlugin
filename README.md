@@ -16,8 +16,8 @@ This plugin allows you to save products as favorite in OroCommerce
 
 | | Version |
 | :--- | :--- |
-| PHP  | 7.4, 8.0 |
-| OroCommerce | 4.2 |
+| PHP  | 8.2 |
+| OroCommerce | 5.1.* |
 
 ## Installation
 

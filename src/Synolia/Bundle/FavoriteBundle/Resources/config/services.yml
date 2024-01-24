@@ -7,10 +7,10 @@ services:
             - { name: layout.data_provider, alias: synolia_favorite }
 
     Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler:
-        public: true
         arguments:
             - '@oro_security.token_accessor'
             - '@doctrine.orm.entity_manager'
+            - '@translator'
 
     Synolia\Bundle\FavoriteBundle\Twig\FavoriteExtension:
         arguments:

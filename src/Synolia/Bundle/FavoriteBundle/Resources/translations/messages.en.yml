@@ -7,3 +7,9 @@ synolia_favorite_bundle:
         yes: Yes
     controller:
         logged_in: You must be logged in to use this feature
+    frontend:
+        messages:
+            favorite_on: The product was mark as a favorite
+            favorite_off: The product was remove from the favorites
+        grid:
+            remove_button_label: Remove from favorite

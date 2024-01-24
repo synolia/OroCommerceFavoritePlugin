@@ -1,0 +1,3 @@
+synolia_favorite_bundle:
+    notification:
+        error: 'Something went wrong, please try again later.'

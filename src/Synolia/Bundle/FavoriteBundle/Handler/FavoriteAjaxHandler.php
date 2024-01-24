@@ -9,22 +9,16 @@ use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
 use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\ProductBundle\Entity\Product;
 use Oro\Bundle\SecurityBundle\Authentication\TokenAccessorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
 class FavoriteAjaxHandler
 {
-    /** @var TokenAccessorInterface */
-    protected $tokenAccessor;
-
-    /** @var EntityManager */
-    protected $entityManager;
-
     public function __construct(
-        TokenAccessorInterface $tokenAccessor,
-        EntityManager $entityManager
+        protected TokenAccessorInterface $tokenAccessor,
+        protected EntityManager $entityManager,
+        protected TranslatorInterface $translator
     ) {
-        $this->tokenAccessor = $tokenAccessor;
-        $this->entityManager = $entityManager;
     }
 
     public function create(Product $product): array
@@ -32,10 +26,14 @@ class FavoriteAjaxHandler
         $synoliaFavoriteRepository = $this->entityManager->getRepository(Favorite::class);
 
         $user = $this->tokenAccessor->getUser();
-        $organization = $this->tokenAccessor->getOrganization();
+        $organization = $user instanceof CustomerUser ? $user->getOrganization() : null;
         if (!$user instanceof CustomerUser || !$organization instanceof Organization) {
             return [
                 'success' => false,
+                'status' => 'warning',
+                'message' => $this->translator->trans(
+                    'synolia_favorite_bundle.controller.logged_in'
+                )
             ];
         }
 
@@ -58,7 +56,7 @@ class FavoriteAjaxHandler
             return [
                 'success' => true,
                 'status' => 'full',
-                'message' => 'The product was mark as a favorite'
+                'message' =>  $this->translator->trans('synolia_favorite_bundle.frontend.messages.favorite_on'),
             ];
         } else {
             $this->entityManager->remove($synoliaFavorite);
@@ -67,7 +65,7 @@ class FavoriteAjaxHandler
             return [
                 'success' => true,
                 'status' => 'empty',
-                'message' => 'The product was remove from the favorites'
+                'message' => $this->translator->trans('synolia_favorite_bundle.frontend.messages.favorite_off')
             ];
         }
     }

@@ -6,9 +6,12 @@ namespace Synolia\Bundle\FavoriteBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Oro\Bundle\CustomerBundle\Entity\Ownership\FrontendCustomerUserAwareTrait;
+use Oro\Bundle\EntityBundle\EntityProperty\CreatedAtAwareTrait;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareInterface;
 use Oro\Bundle\EntityBundle\EntityProperty\DatesAwareTrait;
 use Oro\Bundle\EntityConfigBundle\Metadata\Annotation\Config;
+use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityInterface;
+use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityTrait;
 use Oro\Bundle\OrganizationBundle\Entity\OrganizationAwareInterface;
 use Oro\Bundle\OrganizationBundle\Entity\Ownership\OrganizationAwareTrait;
 use Oro\Bundle\ProductBundle\Entity\Product;
@@ -35,8 +38,10 @@ use Synolia\Bundle\FavoriteBundle\Model\ExtendFavorite;
  * )
  * @ORM\HasLifecycleCallbacks
  */
-class Favorite extends ExtendFavorite implements OrganizationAwareInterface, DatesAwareInterface
+class Favorite implements ExtendEntityInterface, OrganizationAwareInterface, DatesAwareInterface
 {
+    use CreatedAtAwareTrait;
+    use ExtendEntityTrait;
     use OrganizationAwareTrait;
     use DatesAwareTrait;
     use FrontendCustomerUserAwareTrait;

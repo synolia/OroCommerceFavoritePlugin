@@ -2,40 +2,39 @@ import BaseView from 'oroui/js/app/views/base/view';
 import $ from 'jquery';
 import messenger from 'oroui/js/messenger';
 import mediator from 'oroui/js/mediator';
+import routing from 'routing';
+import __ from 'orotranslation/js/translator';
 
 const AjaxButtonView = BaseView.extend({
-
     product: null,
-
     events: {
-        'click .btn': 'setFavoriteProduct',
+        'click .favorite-button-ajax': 'setFavoriteProduct',
     },
 
     initialize(options) {
         this.options = {...this.options, ...options};
-        this.product = this.options.product
+        this.product = this.options.productModel;
     },
 
     setFavoriteProduct(e) {
         let self = this;
         e.preventDefault();
-
         $.ajax({
             url: `/favorite/create/${this.product.id}`,
-            method: 'POST',
+            type: 'POST',
             success: function(response) {
                 if (response.message && response.status) {
 
                     const status = self.getStatus(response.status);
                     messenger.notificationFlashMessage(status, response.message);
-
-                    $(e.currentTarget).html(self.getHeart(response.status));
+                    self.updateIcon($(e.currentTarget), response.status);
+                    messenger.notificationFlashMessage('error',  __('synolia_favorite_bundle.notification.error'));
 
                     mediator.trigger('datagrid:doRefresh:synolia-favorite-grid');
                 }
             },
             error: function() {
-                messenger.notificationFlashMessage('error', 'Something went wrong, please try again later.');
+                messenger.notificationFlashMessage('error',  _.__('synolia_favorite_bundle.notification.error'));
             }
         });
     },
@@ -44,8 +43,17 @@ const AjaxButtonView = BaseView.extend({
         return (['full', 'empty'].indexOf(params) > -1) ? 'success' : params;
     },
 
-    getHeart(params) {
-        return (params === 'full') ? '♥' : '♡';
+    updateIcon(target, status) {
+        const icon = {
+            full: 'fa-heart',
+            empty: 'fa-heart-o'
+        };
+
+        $(target)
+            .children('i')
+            .removeClass('fa-heart')
+            .removeClass('fa-heart-o')
+            .addClass(`${icon[status]}`);
     }
 });
 
