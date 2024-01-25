@@ -5,5 +5,5 @@ layout:
         - '@add':
               id: __favorite
               blockType: block
-              parentId: __product_specification
+              parentId: __product_image_holder
     conditions: 'context["isFavoriteEnabled"] == true'
