@@ -27,13 +27,13 @@ class ProductListAddFavoriteEventListener
         $user = $this->tokenAccessor->getUser();
         $organization = $this->tokenAccessor->getOrganization();
 
-        if (!$user instanceof CustomerUser || !$organization instanceof Organization || 0 === \count($records)) {
+        if (0 === \count($records)) {
             return;
         }
 
         /** @var FavoriteRepository $favoriteRepo */
         $favoriteRepo = $this->entityManager->getRepository(Favorite::class);
-        $favorites =  $favoriteRepo->getFavoritesProductsInSingleArray($user, $organization);
+        $favorites = !$user instanceof CustomerUser || !$organization instanceof Organization ? [] : $favoriteRepo->getFavoritesProductsInSingleArray($user, $organization);
 
         foreach ($event->getProductData() as $productId => $data) {
             $productView = $event->getProductView($productId);

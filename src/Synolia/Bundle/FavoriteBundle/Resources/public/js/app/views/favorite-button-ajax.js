@@ -28,7 +28,6 @@ const AjaxButtonView = BaseView.extend({
                     const status = self.getStatus(response.status);
                     messenger.notificationFlashMessage(status, response.message);
                     self.updateIcon($(e.currentTarget), response.status);
-                    messenger.notificationFlashMessage('error',  __('synolia_favorite_bundle.notification.error'));
 
                     mediator.trigger('datagrid:doRefresh:synolia-favorite-grid');
                 }
@@ -48,12 +47,13 @@ const AjaxButtonView = BaseView.extend({
             full: 'fa-heart',
             empty: 'fa-heart-o'
         };
-
-        $(target)
-            .children('i')
-            .removeClass('fa-heart')
-            .removeClass('fa-heart-o')
-            .addClass(`${icon[status]}`);
+        if(icon.hasOwnProperty(status)) {
+            $(target)
+                .children('i')
+                .removeClass('fa-heart')
+                .removeClass('fa-heart-o')
+                .addClass(`${icon[status]}`);
+        }
     }
 });
 

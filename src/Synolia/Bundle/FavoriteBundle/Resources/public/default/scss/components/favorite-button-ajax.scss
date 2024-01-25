@@ -1,14 +1,19 @@
-.favorite-button-ajax {
-  padding: $favorite-button-padding;
-  &__icon {
-    color: $favorite-button-color;
-    font-size: $favorite-button-font-size;
-    cursor: pointer;
-    &:focus, &:active {
-      color: $favorite-button-color-focus;
+.favorite-button {
+  position: relative;
+  z-index: 1;
+  &-ajax {
+    &.btn {
+      padding: $favorite-button-padding;
     }
-    &:hover {
-      color: $favorite-button-color-hover;
+    &__icon {
+      color: $favorite-button-color;
+      font-size: $favorite-button-font-size;
+      &:focus, &:active {
+        color: $favorite-button-color-focus;
+      }
+      &:hover {
+        color: $favorite-button-color-hover;
+      }
     }
   }
 }
