@@ -20,7 +20,7 @@ layout:
         -   '@setOption':
                 id: product_datagrid
                 optionName: current_row_view
-                optionValue: 'list-view'
+                optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")'
 
         -   '@setOption':
                 id: product_datagrid
@@ -40,7 +40,7 @@ layout:
         -   '@setOption':
                 id: product_datagrid_toolbar_display_options
                 optionName: current_row_view
-                optionValue: 'list-view'
+                optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")'
 
         -   '@setOption':
                 id: product_datagrid_row_favorite
