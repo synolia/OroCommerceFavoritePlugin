@@ -1,17 +1,9 @@
 layout:
     imports:
-        - id: oro_product_grid
-          root: __root
+        -   id: oro_product_grid
+            root: __root
 
     actions:
-        - '@setBlockTheme':
-              themes: '@SynoliaFavorite/layouts/default/imports/synolia_favorite_grid/layout.html.twig'
-
-        -   '@add':
-                id: remove_favorite
-                parentId: product_datagrid_row_product_primary_content_container
-                blockType: block
-
         -   '@setOption':
                 id: product_datagrid
                 optionName: grid_name
@@ -23,26 +15,26 @@ layout:
                 optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")'
 
         -   '@setOption':
-                id: product_datagrid
-                optionName: grid_render_parameters.defaultFiltersViewMode
-                optionValue: collapsed
-
-        -   '@setOption':
-                id: product_datagrid
-                optionName: grid_render_parameters.filtersStateStorageKey
-                optionValue: null
-
-        -   '@setOption':
-                id: product_datagrid_toolbar_actions
-                optionName: visible
-                optionValue: false
-
-        -   '@setOption':
                 id: product_datagrid_toolbar_display_options
                 optionName: current_row_view
                 optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")'
 
         -   '@setOption':
-                id: product_datagrid_row_favorite
+                id: product_datagrid_row_product_sticker_new
                 optionName: visible
-                optionValue: false
+                optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")!="no-image-view"'
+
+        -   '@setOption':
+                id: product_datagrid_row_product_sticker_new_text
+                optionName: visible
+                optionValue: '=data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")=="no-image-view"'
+
+        -   '@setOption':
+                id: product_datagrid_row_favorite_button_with_image
+                optionName: origin
+                optionValue: 'favoritePage'
+
+        -   '@setOption':
+                id: product_datagrid_row_favorite_button_not_image
+                optionName: origin
+                optionValue: 'favoritePage'

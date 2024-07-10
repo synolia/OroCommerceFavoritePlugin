@@ -1,9 +1,19 @@
 layout:
     actions:
-        - '@setBlockTheme':
-              themes: '@SynoliaFavorite/layouts/default/imports/oro_product_list_item/oro_product_list_item.html.twig'
         - '@add':
-              id: __favorite
-              blockType: block
-              parentId: __product_image_holder
-    conditions: 'context["isFavoriteEnabled"] == true'
+            parentId: __product_image_holder
+            id: __favorite_button_with_image
+            prepend: true
+            blockType: favorite_button
+            options:
+                visible: '=data["acl"].isGranted("synolia_favorite_frontend_view") 
+                            && (data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")!="no-image-view")'
+
+        - '@add':
+            parentId: __product_secondary_content_first_container
+            id: __favorite_button_not_image
+            prepend: true
+            blockType: favorite_button
+            options:
+                visible: '=data["acl"].isGranted("synolia_favorite_frontend_view") 
+                            && (data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")=="no-image-view")'

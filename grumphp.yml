@@ -28,4 +28,4 @@ grumphp:
         securitychecker_enlightn: ~
         phpcsfixer2:
             allow_risky: true
-            config: 'ruleset/.php_cs'
+            config: 'ruleset/.php-cs-fixer.php'

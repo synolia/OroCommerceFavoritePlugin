@@ -19,23 +19,47 @@
         "exclude-from-classmap": ["/Tests/"]
     },
     "require": {
-        "php": "~8.2.0",
-        "oro/commerce": "5.1.*"
+        "php": "~8.3.0",
+        "oro/commerce-enterprise": "6.0.*",
+        "oro/platform": "6.0.*"
     },
     "repositories": {
         "oro": {
             "type": "composer",
             "url": "https://packagist.orocrm.com"
+        },
+        "commerce": {
+            "type": "vcs",
+            "url": "https://github.com/oroinc/commerce-er.git"
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "phpmd/phpmd": "^2.13",
-        "phpro/grumphp": "^1.15",
-        "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan-symfony": "^1.2",
+        "phpmd/phpmd": "^2.15",
+        "squizlabs/php_codesniffer": "^3.6",
+        "phpunit/phpunit": "9.5",
+        "sebastian/phpcpd": "6.0.*",
+        "phpro/grumphp": "^2.3",
         "php-parallel-lint/php-parallel-lint": "^1.3",
-        "friendsofphp/php-cs-fixer": "^3.4"
+        "friendsoftwig/twigcs": "^6.4",
+        "phpstan/phpstan-symfony": "^1.3",
+        "friendsofphp/php-cs-fixer": "^3.39",
+        "oro/upgrade-toolkit": "dev-master"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true,
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true,
+            "symfony/flex": true,
+            "symfony/runtime": true
+        }
+    },
+    "scripts": {
+        "fix": "php-cs-fixer fix --config=./dev/resources/.php-cs-fixer.php",
+        "grumphp": "vendor/bin/grumphp run --ansi",
+        "phpstan": "vendor/bin/phpstan analyse -c dev/resources/phpstan.neon --ansi src",
+        "phpcs": "vendor/bin/phpcs --standard=PSR12 --extensions=php --runtime-set ignore_errors_on_exit 1 --runtime-set ignore_warnings_on_exit 1 src"
     }
 }

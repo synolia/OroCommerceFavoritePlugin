@@ -1,0 +1,27 @@
+synolia:
+    favorite_system_setting:
+        name: Verificación de Favoritos
+        title: Activar Verificación de Favoritos
+        label: Activar Verificación de Favoritos para Productos
+        no: No
+        yes: Sí
+        grid:
+            remove_button_label: Eliminar de favoritos
+    favorite:
+        entity_label: 'Favorito'
+        entity_plural_label: 'Favoritos'
+        entity_grid_all_view_label: 'Todos los %entity_plural_label%'
+        entity_frontend_grid_all_view_label: 'Todos los %entity_plural_label%'
+        frontend:
+            messages:
+                not_user: 'Debe iniciar sesión para utilizar esta función'
+                favorite_on: 'El producto se ha marcado como favorito'
+                favorite_off: 'El producto ha sido retirado de favoritos'
+    frontend:
+        favorite:
+            page_title: 'Mis favoritos ♥'
+            grid:
+                remove_button_label: 'Quitar de favoritos'
+        navigation:
+            items:
+                synolia_favorite_index.label: 'Mis favoritos ♥'

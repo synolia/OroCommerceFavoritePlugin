@@ -1,0 +1,27 @@
+synolia:
+    favorite_system_setting:
+        name: Verifica Preferiti
+        title: Abilita Verifica Preferiti
+        label: Abilita Verifica Preferiti per i Prodotti
+        no: No
+        yes: Sì
+        grid:
+            remove_button_label: Rimuovi dai preferiti
+    favorite:
+        entity_label: 'Preferito'
+        entity_plural_label: 'Preferiti'
+        entity_grid_all_view_label: 'Tutti i %entity_plural_label%'
+        entity_frontend_grid_all_view_label: 'Tutti i %entity_plural_label%'
+        frontend:
+            messages:
+                not_user: 'Per utilizzare questa funzione è necessario aver effettuato il login'
+                favorite_on: 'Il prodotto è stato segnato come preferito'
+                favorite_off: 'TIl prodotto è stato rimosso dai preferiti'
+    frontend:
+        favorite:
+            page_title: 'I miei preferiti ♥'
+            grid:
+                remove_button_label: Rimuovere dai preferiti
+        navigation:
+            items:
+                synolia_favorite_index.label: 'I miei preferiti ♥'

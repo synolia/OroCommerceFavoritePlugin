@@ -1,5 +1,8 @@
-$favorite-button-color: get-color('primary', 'main');
-$favorite-button-font-size: 36px;
-$favorite-button-padding: $offset-y*0.5;
-$favorite-button-color-hover: get-color('primary', 'dark');
-$favorite-button-color-focus: $favorite-button-color;
+/* @theme: default; */
+
+$favorite-button-padding: 0 !default;
+$favorite-button-border-color: transparent;
+$favorite-button-color: get-color('primary', 'base');
+$favorite-button-icon-size: 20px !default;
+$favorite-button-icon-wrap-size: 21px !default;
+$favorite-button-size: 34px !default;

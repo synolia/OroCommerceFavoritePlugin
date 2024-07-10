@@ -1,0 +1,12 @@
+services:
+    synolia_favorite.block_type.favorite_button:
+        parent: oro_layout.block_type.abstract_configurable
+        calls:
+            -
+                - setOptionsConfig
+                -
+                    -
+                        origin: { default: 'productListing' }
+            - [setName, ['favorite_button']]
+        tags:
+            - { name: layout.block_type, alias: favorite_button }

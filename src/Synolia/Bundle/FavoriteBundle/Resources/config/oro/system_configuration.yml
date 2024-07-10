@@ -1,21 +1,21 @@
 system_configuration:
     groups:
         system_setting_submenu:
-            title: synolia_favorite_bundle.favorite_system_setting.name
+            title: synolia.favorite_system_setting.name
             icon: 'fa-heart'
 
         system_setting_configuration:
-            title: synolia_favorite_bundle.favorite_system_setting.title
+            title: synolia.favorite_system_setting.title
 
     fields:
         synolia_favorite.favorite_product_enable:
             data_type: boolean
             type: Symfony\Component\Form\Extension\Core\Type\ChoiceType
             options:
-                label: synolia_favorite_bundle.favorite_system_setting.label
+                label: synolia.favorite_system_setting.label
                 choices:
-                    synolia_favorite_bundle.favorite_system_setting.no: 0
-                    synolia_favorite_bundle.favorite_system_setting.yes: 1
+                    synolia.favorite_system_setting.no: 0
+                    synolia.favorite_system_setting.yes: 1
             priority: 10
 
     tree:

@@ -1,0 +1,23 @@
+{% block _favorite_container_widget %}
+    <div {{ block('block_attributes') }}>
+        {{ block_widget(block) }}
+    </div>
+{% endblock %}
+
+{% block _page_title_widget %}
+    {% set additionalClasses = {
+        classPrefix: class_prefix ? ' {{ class_prefix }}-page-title',
+        hasActions: hasActions is defined ? ' page-title--has-actions'
+    } %}
+    {% set attr = layout_attr_defaults(attr, {
+        '~class': ' page-title' ~ additionalClasses.classPrefix ~ additionalClasses.hasActions
+    }) %}
+    {% set content = block_widget(block)|trim %}
+    {% if content|length %}
+        <div class="profile-view">
+            <h1{{ block('block_attributes') }}>
+                <span class="page-title__text"> {{ content|raw }}</span>
+            </h1>
+        </div>
+    {% endif %}
+{% endblock %}

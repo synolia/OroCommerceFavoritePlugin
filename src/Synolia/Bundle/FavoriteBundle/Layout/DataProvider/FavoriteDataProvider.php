@@ -13,25 +13,17 @@ use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
 class FavoriteDataProvider
 {
-    /** @var entityManager */
-    protected $entityManager;
-
-    /** @var TokenAccessor */
-    protected $tokenAccessor;
-
     public function __construct(
-        entityManager $entityManager,
-        tokenAccessor $tokenAccessor
+        private readonly EntityManager $entityManager,
+        private readonly TokenAccessor $tokenAccessor
     ) {
-        $this->entityManager = $entityManager;
-        $this->tokenAccessor = $tokenAccessor;
     }
 
-    public function isProductFavorite(Product $product): bool
+    public function getProductFavorite(Product|int $product): bool
     {
         $user = $this->tokenAccessor->getUser();
-
         $organization = $this->tokenAccessor->getOrganization();
+
         if (!$user instanceof CustomerUser || !$organization instanceof Organization) {
             return false;
         }
@@ -39,7 +31,7 @@ class FavoriteDataProvider
         $favorite = $this->entityManager->getRepository(Favorite::class)->findOneBy([
             'product' => $product,
             'customerUser' => $user,
-            'organization' => $organization
+            'organization' => $organization,
         ]);
 
         return $favorite instanceof Favorite;

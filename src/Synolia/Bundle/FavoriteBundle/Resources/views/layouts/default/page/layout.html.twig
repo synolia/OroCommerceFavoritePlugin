@@ -1,0 +1,25 @@
+{% block favorite_button_widget %}
+
+    {% if product is defined %}
+        {% set isFavorite = is_favorite_product(product) %}
+        {% set options = {'product': product,'origin': origin} %}
+    {% else %}
+        {% set options = {} %}
+    {% endif %}
+
+    {% set heartSvg = isFavorite ? 'heart' : 'heart-o' %}
+    {% set attr = layout_attr_defaults(attr, {
+        'data-page-component-init-on': 'asap',
+        'data-page-component-view': 'synoliafavorite/js/app/views/favorite-button-view-ajax',
+        'data-page-component-options': options|json_encode,
+        '~class': ' favorite-button favorite-button--' ~ class_prefix
+    }) %}
+
+
+    <div {{ block('block_attributes') }}>
+        {{ block_widget(block) }}
+        <a class="favorite-button__link favorite-icon__wrap">
+            <i class="fa favorite-button__icon fa-{{ heartSvg }}"></i>
+        </a>
+    </div>
+{% endblock %}

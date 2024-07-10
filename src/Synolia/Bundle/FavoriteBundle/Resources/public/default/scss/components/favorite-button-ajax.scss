@@ -1,19 +1,41 @@
+/* @theme: default; */
+
 .favorite-button {
-  position: relative;
-  z-index: 1;
-  &-ajax {
-    &.btn {
-      padding: $favorite-button-padding;
+  border: solid 1px $favorite-button-border-color;
+  border-radius: 50%;
+  background: #FFFFFF;
+  height: $favorite-button-size;
+  width: $favorite-button-size;
+  padding: $favorite-button-padding;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: transform .2s;
+  &--gallery-view, &--list-view {
+    position: absolute;
+    z-index: 9;
+    bottom: 12px;
+    left: 12px;
+  }
+
+  :hover {
+    transform: scale(1.1);
+  }
+
+  &__link {
+    color: $favorite-button-color;
+    :hover {
+      cursor: pointer;
     }
-    &__icon {
-      color: $favorite-button-color;
-      font-size: $favorite-button-font-size;
-      &:focus, &:active {
-        color: $favorite-button-color-focus;
-      }
-      &:hover {
-        color: $favorite-button-color-hover;
-      }
-    }
+
+    height: $favorite-button-icon-wrap-size;
+    width: $favorite-button-icon-wrap-size;
+  }
+
+  &__icon {
+    height: $favorite-button-icon-wrap-size;
+    width: $favorite-button-icon-wrap-size;
+    font-size: $favorite-button-icon-size;
+    line-height: 25px;
   }
 }

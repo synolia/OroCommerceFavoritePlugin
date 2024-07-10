@@ -1,0 +1,5 @@
+layout:
+    actions:
+        - '@setBlockTheme':
+            themes: '@SynoliaFavorite/layouts/default/page/layout.html.twig'
+    conditions: 'context["isFavoriteEnabled"] == true'
