@@ -9,7 +9,7 @@ use Oro\Bundle\ProductBundle\Entity\Product;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler;
 
@@ -22,16 +22,11 @@ class FavoriteAjaxController extends AbstractController
     }
 
     /**
-     * @Route(
-     *     "/create/{id}",
-     *     requirements={"id"="\d+"},
-     *     name="synolia_favorite_button_ajax_update"
-     *     )
      *
      * @param Product $product
-     *
      * @return JsonResponse
      */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/create/{id}', requirements: ['id' => '\d+'], name: 'synolia_favorite_button_ajax_update')]
     public function create(Product $product): JsonResponse
     {
         $result = $this->favoriteAjaxHandler->create($product);
