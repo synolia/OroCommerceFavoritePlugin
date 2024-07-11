@@ -32,7 +32,7 @@ class FavoriteExtension extends AbstractExtension
         return [
             new TwigFunction(
                 'is_favorite_product',
-                [$this, 'isFavoriteProduct']
+                $this->isFavoriteProduct(...)
             )
         ];
     }

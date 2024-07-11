@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Synolia\Bundle\FavoriteBundle\Controller\Frontend;
 
-use Oro\Bundle\LayoutBundle\Annotation\Layout;
+use Oro\Bundle\LayoutBundle\Attribute\Layout;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
 class FavoriteController extends AbstractController
 {
-    /**
-     * @Route("/", name="synolia_favorite_view")
-     * @Layout(vars={"entity_class"})
-     */
+    #[\Symfony\Component\Routing\Attribute\Route(path: '/', name: 'synolia_favorite_view')]
+    #[Layout(vars: ['entity_class'])]
     public function indexAction(): array
     {
         $entityClass = Favorite::class;
