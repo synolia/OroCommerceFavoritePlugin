@@ -14,8 +14,8 @@ system_configuration:
             options:
                 label: synolia.favorite_system_setting.label
                 choices:
-                    synolia.favorite_system_setting.no: 0
                     synolia.favorite_system_setting.yes: 1
+                    synolia.favorite_system_setting.no: 0
             priority: 10
 
     tree:
