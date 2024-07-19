@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace Synolia\Bundle\FavoriteBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
+use Oro\Bundle\MigrationBundle\Migration\Extension\RenameExtensionAwareInterface;
+use Oro\Bundle\MigrationBundle\Migration\Extension\RenameExtensionAwareTrait;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
 /**
- * @SuppressWarnings(PHPMD.TooManyMethods)
  * @SuppressWarnings(PHPMD.ExcessiveClassLength)
  */
 class SynoliaFavoriteBundleInstaller implements Installation
 {
+
     public function getMigrationVersion(): string
     {
-        return 'v1_0';
+        return 'v1_2';
     }
 
     /**
@@ -50,7 +52,7 @@ class SynoliaFavoriteBundleInstaller implements Installation
 
     protected function addSynoliaFavoriteForeignKeys(Schema $schema): void
     {
-        $table = $schema->getTable('synolia_favorite');
+        $table = $schema->getTable('sy_favorite');
         $table->addForeignKeyConstraint(
             $schema->getTable('oro_organization'),
             ['organization_id'],

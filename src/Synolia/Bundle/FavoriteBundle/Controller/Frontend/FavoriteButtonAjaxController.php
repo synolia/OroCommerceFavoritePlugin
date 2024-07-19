@@ -15,7 +15,7 @@ use Synolia\Bundle\FavoriteBundle\Handler\FavoriteButtonAjaxHandler;
 /**
  * @Route("/ajax", options={"expose"=true})
  */
-final class FavoriteButtonAjaxController extends AbstractController
+class FavoriteButtonAjaxController extends AbstractController
 {
     #[Route('/update/{id}', requirements: ['id' => '\d+'], name: 'synolia_favorite_button_ajax_update', methods: ['POST'])]
     public function updateAction(

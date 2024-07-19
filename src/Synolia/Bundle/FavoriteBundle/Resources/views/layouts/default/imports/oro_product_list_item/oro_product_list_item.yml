@@ -17,3 +17,5 @@ layout:
             options:
                 visible: '=data["acl"].isGranted("synolia_favorite_frontend_view") 
                             && (data["oro_product_datagrid_row_view"].getThemeByGridName("synolia-favorite-grid")=="no-image-view")'
+
+    conditions: 'context["isFavoriteEnabled"] == true'

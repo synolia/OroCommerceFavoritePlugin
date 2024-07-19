@@ -10,7 +10,7 @@ use Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-final class FavoriteExtension extends AbstractExtension
+class FavoriteExtension extends AbstractExtension
 {
     public function __construct(
         private readonly FavoriteDataProvider $favoriteDataProvider,

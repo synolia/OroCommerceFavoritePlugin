@@ -10,7 +10,7 @@ use Oro\Bundle\ProductBundle\Entity\Product;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
-final class FavoriteButtonAjaxHandler
+class FavoriteButtonAjaxHandler
 {
     public function __construct(
         private readonly EntityManagerInterface $entityManager,
@@ -59,6 +59,7 @@ final class FavoriteButtonAjaxHandler
             ->setOrganization($user->getOrganization());
 
         $this->entityManager->persist($favorite);
+        dump($favorite);
         $this->entityManager->flush();
 
         return [

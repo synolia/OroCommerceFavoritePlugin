@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 
-final class FavoriteController extends AbstractController
+class FavoriteController extends AbstractController
 {
     #[Route('/', name: 'synolia_favorite_index')]
     #[Layout(vars: ['entity_class'])]
