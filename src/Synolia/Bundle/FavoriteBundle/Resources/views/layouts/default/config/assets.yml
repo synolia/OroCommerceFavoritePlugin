@@ -2,5 +2,3 @@ styles:
     inputs:
         - 'bundles/synoliafavorite/default/scss/components/favorite-button-ajax.scss'
         - 'bundles/synoliafavorite/default/scss/variables/favorite-button-config.scss'
-
-    output: 'css/styles.css'
