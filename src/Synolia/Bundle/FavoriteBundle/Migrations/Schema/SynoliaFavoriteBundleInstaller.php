@@ -52,7 +52,7 @@ class SynoliaFavoriteBundleInstaller implements Installation
 
     protected function addSynoliaFavoriteForeignKeys(Schema $schema): void
     {
-        $table = $schema->getTable('sy_favorite');
+        $table = $schema->getTable('synolia_favorite');
         $table->addForeignKeyConstraint(
             $schema->getTable('oro_organization'),
             ['organization_id'],
