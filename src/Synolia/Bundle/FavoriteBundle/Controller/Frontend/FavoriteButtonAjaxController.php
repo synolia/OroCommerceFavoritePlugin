@@ -12,9 +12,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Synolia\Bundle\FavoriteBundle\Handler\FavoriteButtonAjaxHandler;
 
-/**
- * @Route("/ajax", options={"expose"=true})
- */
+#[Route('/ajax', options: ["expose"=>true])]
+
 class FavoriteButtonAjaxController extends AbstractController
 {
     #[Route('/update/{id}', requirements: ['id' => '\d+'], name: 'synolia_favorite_button_ajax_update', methods: ['POST'])]
