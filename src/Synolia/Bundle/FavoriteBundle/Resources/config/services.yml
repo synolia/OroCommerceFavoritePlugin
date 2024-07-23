@@ -6,16 +6,14 @@ services:
         tags:
             - { name: layout.data_provider, alias: synolia_favorite }
 
-    Synolia\Bundle\FavoriteBundle\Handler\FavoriteAjaxHandler:
+    Synolia\Bundle\FavoriteBundle\Handler\FavoriteButtonAjaxHandler:
         arguments:
-            - '@oro_security.token_accessor'
             - '@doctrine.orm.entity_manager'
             - '@translator'
 
     Synolia\Bundle\FavoriteBundle\Twig\FavoriteExtension:
         arguments:
-            $favoriteDataProvider: '@Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider'
-            $entityManager: '@doctrine.orm.entity_manager'
+            - '@Synolia\Bundle\FavoriteBundle\Layout\DataProvider\FavoriteDataProvider'
         tags:
             - { name: twig.extension }
 
@@ -24,12 +22,3 @@ services:
             - '@oro_config.manager'
         tags:
             - { name: layout.context_configurator }
-
-    Synolia\Bundle\FavoriteBundle\EventListener\NavigationListener:
-        class: Synolia\Bundle\FavoriteBundle\EventListener\NavigationListener
-        arguments:
-            - '@security.authorization_checker'
-            - '@oro_security.token_accessor'
-            - '@oro_config.manager'
-        tags:
-            - { name: kernel.event_listener, event: oro_menu.configure.oro_customer_menu, method: onNavigationConfigure }

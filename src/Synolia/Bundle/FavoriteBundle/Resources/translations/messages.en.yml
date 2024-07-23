@@ -1,15 +1,27 @@
-synolia_favorite_bundle:
+synolia:
     favorite_system_setting:
         name: Favorite Check
         title: Enable Favorite Check
         label: Enable Favorite Check for Products
         no: No
         yes: Yes
-    controller:
-        logged_in: You must be logged in to use this feature
-    frontend:
-        messages:
-            favorite_on: The product was mark as a favorite
-            favorite_off: The product was remove from the favorites
         grid:
             remove_button_label: Remove from favorite
+    favorite:
+        entity_label: 'Favorite'
+        entity_plural_label: 'Favorites'
+        entity_grid_all_view_label: 'All %entity_plural_label%'
+        entity_frontend_grid_all_view_label: 'All %entity_plural_label%'
+        frontend:
+            messages:
+                not_user: 'You must be logged in to use this feature'
+                favorite_on: 'The product was marked as a favorite'
+                favorite_off: 'The product was removed from favorites'
+    frontend:
+        favorite:
+            page_title: 'My Favorites ♥'
+            grid:
+                remove_button_label: Remove from favorites
+        navigation:
+            items:
+                synolia_favorite_index.label: 'My Favorites ♥'

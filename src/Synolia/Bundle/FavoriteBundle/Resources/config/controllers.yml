@@ -1,0 +1,15 @@
+services:
+    _defaults:
+        public: true
+
+    Synolia\Bundle\FavoriteBundle\Controller\Frontend\FavoriteButtonAjaxController:
+        calls:
+            - ['setContainer', ['@service_container']]
+        tags:
+            - { name: controller.service_arguments }
+
+    Synolia\Bundle\FavoriteBundle\Controller\Frontend\FavoriteController:
+        calls:
+            - ['setContainer', ['@Psr\Container\ContainerInterface']]
+        tags:
+            - { name: container.service_subscriber }

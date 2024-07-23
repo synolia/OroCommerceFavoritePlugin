@@ -10,7 +10,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
-    const ROOT_NODE = 'synolia_favorite';
+    const string ROOT_NODE = 'synolia_favorite';
 
     public function getConfigTreeBuilder(): TreeBuilder
     {

@@ -1,3 +1,4 @@
 datagrids:
     synolia-favorite-grid:
         extends: frontend-product-search-grid
+        acl_resource: synolia_favorite_frontend_view

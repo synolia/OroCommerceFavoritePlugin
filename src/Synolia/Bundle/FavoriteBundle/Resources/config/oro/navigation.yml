@@ -1,17 +1,23 @@
 navigation:
     menu_config:
         items:
-            synolia_favorites_list:
-                label: My favorites ♥
-                route: 'synolia_favorite_view'
-                display: true
+            synolia_favorite_index:
+                label: synolia.frontend.navigation.items.synolia_favorite_index.label
+                route: synolia_favorite_index
+
         tree:
             frontend_menu:
                 children:
                     oro_customer_menu_customer_user_index:
                         children:
-                            synolia_favorites_list: ~
+                            synolia_favorite_index: ~
             oro_customer_menu:
                 scope_type: menu_frontend_visibility
                 children:
-                    synolia_favorites_list: ~
+                    synolia_favorite_index: ~
+            oro_customer_menu_refreshing_teal:
+                scope_type: menu_fronend_visibility
+                children:
+                    oro_customer_frontend_customer_user_profiles_and_addresses:
+                        children:
+                            synolia_favorite_index: ~

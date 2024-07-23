@@ -1,22 +1,22 @@
 services:
-    Synolia\Bundle\FavoriteBundle\EventListener\FrontendProductSearchGridListener:
+    Synolia\Bundle\FavoriteBundle\EventListener\FrontendProductFavoriteDatagridListener:
         arguments:
-            - '@oro_security.token_accessor'
             - '@doctrine.orm.entity_manager'
+            - '@oro_security.acl_helper'
         tags:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.before.frontend-product-search-grid, method: onBuildBefore }
             - { name: kernel.event_listener, event: oro_datagrid.search_datasource.result.after.frontend-product-search-grid, method: onResultAfter }
 
-    Synolia\Bundle\FavoriteBundle\EventListener\SynoliaFavoriteGridListener:
+    Synolia\Bundle\FavoriteBundle\EventListener\FavoriteDatagridListener:
         arguments:
-            - '@oro_security.token_accessor'
             - '@doctrine.orm.entity_manager'
+            - '@oro_security.acl_helper'
         tags:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.after.synolia-favorite-grid, method: onBuildAfter }
 
     Synolia\Bundle\FavoriteBundle\EventListener\ProductListAddFavoriteEventListener:
         arguments:
             - '@doctrine.orm.entity_manager'
-            - '@oro_security.token_accessor'
+            - '@oro_security.acl_helper'
         tags:
             - { name: kernel.event_listener, event: oro_product.product_list.build_result, method: onBuildResult, priority: 10 }

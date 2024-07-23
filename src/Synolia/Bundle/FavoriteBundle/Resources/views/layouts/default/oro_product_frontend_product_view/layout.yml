@@ -1,13 +1,15 @@
 layout:
     actions:
-        - '@setBlockTheme':
-              themes: '@SynoliaFavorite/layouts/default/oro_product_frontend_product_view/layout.html.twig'
-        - '@add':
-              id: favorite_media_container
-              blockType: block
-              options:
-                  vars:
-                      product: '=data["product"]'
-                      favorite: '=data["synolia_favorite"].isProductFavorite(data["product"])'
-              parentId: product_view_media_container
+        -   '@add':
+                parentId: product_view_media_wrapper
+                id: favorite_button
+                prepend: true
+                blockType: favorite_button
+                options:
+                    visible: '=data["acl"].isGranted("synolia_favorite_frontend_view")'
+                    class_prefix: 'gallery-view'
+                    vars:
+                        isFavorite: '=data["synolia_favorite"].getProductFavorite(data["parentProduct"] 
+                                ? data["parentProduct"] 
+                                : data["oro_product_variant"].getProductVariantOrProduct(data))'
     conditions: 'context["isFavoriteEnabled"] == true'
