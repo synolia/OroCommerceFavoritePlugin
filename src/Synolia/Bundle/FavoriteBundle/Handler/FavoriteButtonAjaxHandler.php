@@ -59,7 +59,6 @@ class FavoriteButtonAjaxHandler
             ->setOrganization($user->getOrganization());
 
         $this->entityManager->persist($favorite);
-        dump($favorite);
         $this->entityManager->flush();
 
         return [
