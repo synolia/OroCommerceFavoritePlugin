@@ -10,6 +10,7 @@ use Oro\Bundle\DataGridBundle\Event\BuildBefore;
 use Oro\Bundle\DataGridBundle\Extension\Formatter\Property\PropertyInterface;
 use Oro\Bundle\SearchBundle\Datagrid\Event\SearchResultAfter;
 use Oro\Bundle\SecurityBundle\ORM\Walker\AclHelper;
+use Symfony\Bundle\SecurityBundle\Security;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 use Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository;
 
@@ -17,7 +18,8 @@ class FrontendProductFavoriteDatagridListener
 {
     public function __construct(
         private readonly EntityManager $entityManager,
-        private readonly AclHelper $aclHelper
+        private readonly AclHelper $aclHelper,
+        private readonly Security $security
     ) {
     }
 
@@ -40,6 +42,10 @@ class FrontendProductFavoriteDatagridListener
     {
         $records = $event->getRecords();
         if (0 === \count($records)) {
+            return;
+        }
+
+        if (!$this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
             return;
         }
 
