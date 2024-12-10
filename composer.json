@@ -26,10 +26,6 @@
         "oro": {
             "type": "composer",
             "url": "https://packagist.orocrm.com"
-        },
-        "commerce": {
-            "type": "vcs",
-            "url": "https://github.com/oroinc/commerce-er.git"
         }
     },
     "minimum-stability": "dev",
