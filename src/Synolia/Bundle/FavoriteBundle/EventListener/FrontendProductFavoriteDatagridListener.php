@@ -45,10 +45,6 @@ class FrontendProductFavoriteDatagridListener
             return;
         }
 
-        if (!$this->security->isGranted('IS_AUTHENTICATED_FULLY')) {
-            return;
-        }
-
         /** @var FavoriteRepository $favoriteRepo */
         $favoriteRepo = $this->entityManager->getRepository(Favorite::class);
         $favProductIds = $favoriteRepo->findAllProductIdsFilteredByAcl($this->aclHelper);

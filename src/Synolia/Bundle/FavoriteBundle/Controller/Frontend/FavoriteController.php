@@ -17,9 +17,9 @@ class FavoriteController extends AbstractController
     #[Acl(
         id: 'synolia_favorite_frontend_view',
         type: 'entity',
-        class: 'SynoliaFavoriteBundle\Entity\Favorite',
+        class: Favorite::class,
         permission: 'VIEW',
-        group_name: 'commerce'
+        groupName: 'commerce'
     )]
     public function indexAction(): array
     {
