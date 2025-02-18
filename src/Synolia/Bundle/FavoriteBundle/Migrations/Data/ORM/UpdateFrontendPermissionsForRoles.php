@@ -45,7 +45,7 @@ class UpdateFrontendPermissionsForRoles extends AbstractMassUpdateCustomerUserRo
                 'entity:' . Favorite::class => ['VIEW_SYSTEM', 'CREATE_SYSTEM', 'EDIT_SYSTEM', 'DELETE_SYSTEM'],
             ],
             'ROLE_FRONTEND_BUYER' => [
-                'entity:' . Favorite::class => ['VIEW_BASIC', 'CREATE_BASIC', 'EDIT_BASIC', 'DELETE_BASIC'],
+                'entity:' . Favorite::class => ['VIEW_LOCAL', 'CREATE_LOCAL', 'EDIT_LOCAL', 'DELETE_LOCAL'],
             ],
             'ROLE_FRONTEND_ANONYMOUS' => [
                 'entity:' . Favorite::class => ['VIEW_NONE', 'CREATE_NONE', 'EDIT_NONE', 'DELETE_NONE'],
