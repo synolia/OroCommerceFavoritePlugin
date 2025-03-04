@@ -30,7 +30,7 @@ class FavoriteExtension extends AbstractExtension
     public function isFavoriteProduct(Product|array|ProductView $product): bool
     {
         if ($product instanceof ProductView) {
-            return $product->get('favorite');
+            return $product->has('favorite') ? $product->get('favorite') : false;
         }
 
         if (\is_array($product)) {
