@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Synolia\Bundle\FavoriteBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
+use Oro\Bundle\CustomerBundle\Entity\CustomerUser;
+use Oro\Bundle\OrganizationBundle\Entity\Organization;
 use Oro\Bundle\ProductBundle\Event\BuildResultProductListEvent;
+use Oro\Bundle\SecurityBundle\Authentication\TokenAccessor;
 use Oro\Bundle\SecurityBundle\ORM\Walker\AclHelper;
 use Synolia\Bundle\FavoriteBundle\Entity\Favorite;
 use Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository;
@@ -14,15 +17,18 @@ class ProductListAddFavoriteEventListener
 {
     public function __construct(
         private readonly EntityManager $entityManager,
-        private readonly AclHelper $aclHelper
+        private readonly AclHelper $aclHelper,
+        private readonly TokenAccessor $tokenAccessor
     ) {
     }
 
     public function onBuildResult(BuildResultProductListEvent $event): void
     {
+        $user = $this->tokenAccessor->getUser();
+        $organization = $this->tokenAccessor->getOrganization();
         $records = $event->getProductData();
 
-        if (0 === \count($records)) {
+        if (!$user instanceof CustomerUser || !$organization instanceof Organization || 0 === \count($records)) {
             return;
         }
 

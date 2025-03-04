@@ -3,7 +3,7 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@oro_security.acl_helper'
-            - '@security.helper'
+            - '@oro_security.token_accessor'
         tags:
             - { name: kernel.event_listener, event: oro_datagrid.datagrid.build.before.frontend-product-search-grid, method: onBuildBefore }
             - { name: kernel.event_listener, event: oro_datagrid.search_datasource.result.after.frontend-product-search-grid, method: onResultAfter }
@@ -19,5 +19,6 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@oro_security.acl_helper'
+            - '@oro_security.token_accessor'
         tags:
             - { name: kernel.event_listener, event: oro_product.product_list.build_result, method: onBuildResult, priority: 10 }
