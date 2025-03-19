@@ -19,8 +19,8 @@
         "exclude-from-classmap": ["/Tests/"]
     },
     "require": {
-        "php": "~8.2.0",
-        "oro/commerce": "5.1.*"
+        "php": "~8.3.0",
+        "oro/commerce": "6.0.*"
     },
     "repositories": {
         "oro": {
@@ -31,10 +31,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "phpmd/phpmd": "^2.13",
-        "phpro/grumphp": "^1.15",
+        "phpmd/phpmd": "^2.15",
+        "phpro/grumphp": "^2.3",
         "phpspec/phpspec": "^6.1",
-        "phpstan/phpstan-symfony": "^1.2",
+        "phpstan/phpstan-symfony": "^1.3",
         "php-parallel-lint/php-parallel-lint": "^1.3",
         "friendsofphp/php-cs-fixer": "^3.4"
     }
