@@ -15,7 +15,6 @@ use Oro\Bundle\EntityExtendBundle\Entity\ExtendEntityTrait;
 use Oro\Bundle\OrganizationBundle\Entity\OrganizationAwareInterface;
 use Oro\Bundle\OrganizationBundle\Entity\Ownership\OrganizationAwareTrait;
 use Oro\Bundle\ProductBundle\Entity\Product;
-use Synolia\Bundle\FavoriteBundle\Model\ExtendFavorite;
 
 /**
  * @ORM\Entity(repositoryClass="Synolia\Bundle\FavoriteBundle\Entity\Repository\FavoriteRepository")
@@ -26,7 +25,7 @@ use Synolia\Bundle\FavoriteBundle\Model\ExtendFavorite;
  *          "ownership"={
  *              "organization_field_name"="organization",
  *              "organization_column_name"="organization_id",
- *              "frontend_owner_type"="FRONTEND_CUSTOMER",
+ *              "frontend_owner_type"="FRONTEND_USER",
  *              "frontend_owner_field_name"="customerUser",
  *              "frontend_owner_column_name"="customer_user_id",
  *          },
