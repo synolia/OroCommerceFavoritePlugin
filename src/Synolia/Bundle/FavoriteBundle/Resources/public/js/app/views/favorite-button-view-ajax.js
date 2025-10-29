@@ -9,8 +9,8 @@ const FAVORITE_PAGE = 'favoritePage';
 const ROUTE_FAVORITE_BUTTON_AJAX_UPDATE = 'synolia_favorite_button_ajax_update';
 const FAVORITE_DATAGRID_NAME = 'synolia-favorite-grid';
 const ICONS = {
-    created: 'fa-heart',
-    removed: 'fa-heart-o'
+    created: 'isFavorite',
+    removed: ''
 };
 
 const FavoriteButtonViewAjax = BaseView.extend({
@@ -19,7 +19,7 @@ const FavoriteButtonViewAjax = BaseView.extend({
     origin: PRODUCT_LISTING,
 
     events: {
-        'click .favorite-button__link': 'setProductToFavorite'
+        'click': 'setProductToFavorite'
     },
 
     constructor: function FavoriteButtonViewAjax(options) {
@@ -84,10 +84,9 @@ const FavoriteButtonViewAjax = BaseView.extend({
         }
 
         $(target)
-            .children('i')
-            .removeClass('fa-heart')
-            .removeClass('fa-heart-o')
-            .addClass(`fa ${ICONS[status]}`);
+            .children('svg')
+            .removeClass('isFavorite')
+            .addClass(`${ICONS[status]}`);
     }
 });
 
