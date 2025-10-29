@@ -7,7 +7,7 @@
         {% set options = {} %}
     {% endif %}
 
-    {% set heartSvg = isFavorite ? 'heart' : 'heart-o' %}
+    {% set heartSvgClass = isFavorite ? ' isFavorite' : '' %}
     {% set attr = layout_attr_defaults(attr, {
         'data-page-component-init-on': 'asap',
         'data-page-component-view': 'synoliafavorite/js/app/views/favorite-button-view-ajax',
@@ -15,11 +15,7 @@
         '~class': ' favorite-button favorite-button--' ~ class_prefix
     }) %}
 
-
-    <div {{ block('block_attributes') }}>
-        {{ block_widget(block) }}
-        <a class="favorite-button__link favorite-icon__wrap">
-            <i class="fa favorite-button__icon fa-{{ heartSvg }}"></i>
-        </a>
-    </div>
+    <button {{ block('block_attributes') }}>
+        {{ renderIcon.icon({name: 'heart', extraClass: 'theme-icon__transparent favorite-button__icon' ~ heartSvgClass}) }}
+    </button>
 {% endblock %}
