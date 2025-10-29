@@ -12,10 +12,11 @@
         'data-page-component-init-on': 'asap',
         'data-page-component-view': 'synoliafavorite/js/app/views/favorite-button-view-ajax',
         'data-page-component-options': options|json_encode,
-        '~class': ' favorite-button favorite-button--' ~ class_prefix
+        '~class': ' btn btn--plain btn--no-padding favorite-button favorite-button--' ~ class_prefix
     }) %}
 
     <button {{ block('block_attributes') }}>
-        {{ renderIcon.icon({name: 'heart', extraClass: 'theme-icon__transparent favorite-button__icon' ~ heartSvgClass}) }}
+        {% import '@OroUI/layouts/renderIcon.html.twig' as renderIcon %}
+        {{ renderIcon.icon({name: 'heart', extraClass: 'favorite-button__icon' ~ heartSvgClass}) }}
     </button>
 {% endblock %}
