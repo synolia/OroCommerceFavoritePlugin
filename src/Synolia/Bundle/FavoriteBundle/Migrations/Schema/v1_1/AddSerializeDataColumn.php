@@ -18,7 +18,7 @@ class AddSerializeDataColumn implements Migration, OrderedMigrationInterface
     public function up(Schema $schema, QueryBag $queries): void
     {
         $table = $schema->getTable('synolia_favorite');
-        if ($table->hasColumn('serialize_data')) {
+        if ($table->hasColumn('serialized_data')) {
             return;
         }
         $table->addColumn('serialized_data', Types::JSON, ['notnull' => false]);
