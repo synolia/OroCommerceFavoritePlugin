@@ -7,9 +7,10 @@ use Doctrine\DBAL\Types\Types;
 use Oro\Bundle\MigrationBundle\Migration\Extension\RenameExtension;
 use Oro\Bundle\MigrationBundle\Migration\Extension\RenameExtensionAwareInterface;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
+use Oro\Bundle\MigrationBundle\Migration\OrderedMigrationInterface;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
-class AddSerializeDataColumn implements Migration
+class AddSerializeDataColumn implements Migration, OrderedMigrationInterface
 {
     /**
      * {@inheritDoc}
@@ -21,5 +22,10 @@ class AddSerializeDataColumn implements Migration
             return;
         }
         $table->addColumn('serialized_data', Types::JSON, ['notnull' => false]);
+    }
+
+    public function getOrder(): int
+    {
+        return 10;
     }
 }
