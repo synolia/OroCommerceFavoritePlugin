@@ -16,7 +16,6 @@ navigation:
                 children:
                     synolia_favorite_index: ~
             oro_customer_menu_refreshing_teal:
-                scope_type: menu_fronend_visibility
                 children:
                     oro_customer_frontend_customer_user_profiles_and_addresses:
                         children:
