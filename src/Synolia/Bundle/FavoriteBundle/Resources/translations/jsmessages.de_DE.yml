@@ -1,0 +1,3 @@
+synolia:
+    notification:
+        error: "Etwas ist schiefgelaufen, bitte versuchen Sie es später erneut."

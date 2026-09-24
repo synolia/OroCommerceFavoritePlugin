@@ -1,0 +1,3 @@
+synolia:
+    notification:
+        error: "Algo salió mal, por favor inténtelo de nuevo más tarde."
